@@ -1,2 +1,2 @@
-# K-ytt-liittym-projekti
+#Kayttoliittyma-projekti
 SAMK käyttöliittymäprojekti kurssin repo 
