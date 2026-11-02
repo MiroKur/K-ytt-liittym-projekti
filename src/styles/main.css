@@ -1,15 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 :root {
   font-family: "DM Sans", sans-serif;
-  color: #25392e;
-  background: #faf9f5;
+  color: var(--text);
+  background: var(--background);
   font-synthesis: none;
   line-height: 1.6;
   font-weight: 400;
-  --green: #244b38;
-  --muted: #616b60;
-  --line: #dedfd5;
-  --cream: #eeefe5;
+  --background: #F8FAF7;
+  --green: #276749;
+  --text: #1F2937;
+  --surface: #FFFFFF;
+  --muted: #59655f;
+  --line: #dde5df;
+  --cream: #edf3ed;
 }
 * {
   box-sizing: border-box;
@@ -82,7 +85,7 @@ h3 {
 button {
   border: 1px solid var(--line);
   border-radius: 9px;
-  background: white;
+  background: var(--surface);
   padding: 10px 18px;
   min-height: 44px;
 }
@@ -93,11 +96,11 @@ button {
   font-weight: 600;
 }
 .primary:hover {
-  background: #173425;
+  background: #1e5039;
 }
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: #faf9f5;
+  background: var(--background);
 }
 .header-inner {
   max-width: 1240px;
@@ -141,14 +144,14 @@ nav a {
   font-size: 0.95rem;
 }
 nav a.active {
-  background: #e9eddf;
+  background: #e7f0e9;
   font-weight: 700;
 }
 .count {
   display: inline-grid;
   place-items: center;
   font-size: 0.75rem;
-  background: #d8e0cc;
+  background: #d4e6d9;
   border-radius: 20px;
   min-width: 22px;
   height: 22px;
@@ -172,12 +175,12 @@ main {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #55644b;
+  color: var(--green);
   margin-bottom: 18px;
 }
 .hero h1 em {
   font-style: normal;
-  color: #567443;
+  color: var(--green);
 }
 .hero-copy > p:last-child {
   color: var(--muted);
@@ -252,7 +255,7 @@ main {
   color: #4c623b;
 }
 .discovery {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 15px;
   padding: 28px;
@@ -277,8 +280,8 @@ select {
   min-width: 0;
   border: 1px solid #c5cbbb;
   border-radius: 8px;
-  background: #fafbf7;
-  color: #25392e;
+  background: var(--background);
+  color: var(--text);
   padding: 13px 14px;
   min-height: 50px;
 }
@@ -320,7 +323,7 @@ input {
 }
 .welcome {
   text-align: center;
-  background: #f0f1e8;
+  background: #edf3ed;
   border: 1px dashed #c8cfba;
   border-radius: 14px;
   padding: 32px 20px;
@@ -356,7 +359,7 @@ input {
   border: 1px solid var(--line);
   border-radius: 13px;
   overflow: hidden;
-  background: white;
+  background: var(--surface);
   transition:
     transform 0.15s,
     box-shadow 0.15s;
@@ -397,7 +400,7 @@ input {
 }
 .favorite {
   font-size: 0.8rem;
-  background: #fafbf7;
+  background: var(--background);
   width: auto;
   padding: 8px 13px;
 }
@@ -406,13 +409,13 @@ input {
   vertical-align: middle;
 }
 .favorite.saved {
-  background: #e9efdf;
+  background: #e7f0e9;
   border-color: #b9c8ab;
 }
 .status-message {
   padding: 32px;
   text-align: center;
-  background: #f0f1e8;
+  background: #edf3ed;
   border-radius: 12px;
   margin: 16px 0;
 }
@@ -438,7 +441,7 @@ input {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: #e9ecdf;
+  background: #edf3ed;
   color: #5c6b51;
   font-size: 0.8rem;
 }
@@ -452,7 +455,7 @@ input {
   color: var(--muted);
 }
 .storage-note {
-  background: #eeefe5;
+  background: var(--cream);
   border-radius: 10px;
   padding: 18px 22px;
   font-size: 0.85rem;
@@ -501,7 +504,7 @@ input {
 }
 .ingredients {
   border: 1px solid var(--line);
-  background: white;
+  background: var(--surface);
   padding: 28px;
   border-radius: 14px;
 }
@@ -517,7 +520,7 @@ input {
   display: flex;
   justify-content: space-between;
   gap: 25px;
-  border-bottom: 1px solid #e7e8df;
+  border-bottom: 1px solid var(--line);
   padding: 12px 0;
   font-size: 0.9rem;
 }
@@ -572,7 +575,7 @@ footer {
   top: -100px;
   left: 16px;
   padding: 12px;
-  background: white;
+  background: var(--surface);
   z-index: 10;
 }
 .skip-link:focus {

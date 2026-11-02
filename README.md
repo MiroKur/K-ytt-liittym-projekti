@@ -80,3 +80,9 @@ Testit käynnistävät Viten itse ja käyttävät vakioituja API-vastauksia. Ne 
 - Demo ja esittelyvideo: ei vielä julkaistu.
 
 Uusin toimeksianto valitsee tehtävienhallintaan Jiran; alkuperäisen Word-suunnitelman Todoist/GitHub Projects -ehdotusta ei muutettu alkuperäistiedostossa. [Jiraan siirrettävät tehtävät](docs/JIRA.md). Moodle-palautuksia ei ole tehty tämän toteutuksen yhteydessä.
+
+## Visuaalinen linja
+
+Käyttöliittymän tausta on `#F8FAF7`, pääväri metsänvihreä `#276749`, teksti `#1F2937` ja kortit valkoisia. Ulkoasu on moderni ja minimalistinen, kulmat pyöristettyjä. Yhteiset värit on määritelty CSS-muuttujiin tiedostossa `src/styles/main.css`.
+
+Kun Figma-prototyyppi valmistuu ja sen linkki on käytettävissä, se on ensisijainen visuaalinen malli React-toteutukselle. Silloin tarkistetaan myös asettelu, typografia, välit, komponentit ja mobiilinäkymät prototyyppiä vasten. Nykyinen toteutus perustuu annettuun tyyliohjeeseen; vastaavuutta valmiiseen prototyyppiin ei ole vielä varmennettu.
