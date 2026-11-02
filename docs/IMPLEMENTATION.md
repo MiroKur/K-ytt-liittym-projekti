@@ -34,14 +34,18 @@ Alustava ilme: vaalea tausta, vihreät painikkeet, kortit ja CSS:llä piirretty 
 | `npm audit --omit=dev` | 0 tunnettua tuotantoriippuvuuksien haavoittuvuutta |
 | `git diff --check` | Onnistui |
 | TheMealDB `search.php?s=Arrabiata` HTTP-kutsu | Palautti oikean Spicy Arrabiata Penne -reseptin |
-| Playwright, 14 tapausta × Chromium/Firefox | Yritetty, ympäristön selainkäynnistys estyi; ei hyväksyttyä E2E-tulosta |
+| Playwright, 14 tapausta × Chromium/Firefox | GitHub Actionsissa 28/28 läpäisi (16,4 s) |
 
 Playwrightin ensimmäinen selainlataus palautti viallisen paketin. Vanhemman selainjakelun lataus onnistui virallisesta vaihtoehtoisesta jakelusta, mutta Chromium pysähtyi ympäristön `socket(): Operation not permitted` -rajoitukseen. Uusin Playwright-testiajuri palautettiin käyttöön. Valinnaiset `RECIPEBOX_CHROMIUM_EXECUTABLE` ja `RECIPEBOX_FIREFOX_EXECUTABLE` mahdollistavat erikseen asennetun testiselaimen käytön; normaalisti niitä ei aseteta. Näitä kokeiluja ei lasketa läpäistyiksi sovellustesteiksi.
 
-GitHub Actions asentaa lukitut riippuvuudet, ajaa buildin ja yksikkötestit, asentaa ajurin mukaiset selaimet ja suorittaa E2E-testit. Työnkulun lisääminen ei itsessään tarkoita onnistunutta CI-ajoa.
+GitHub Actionsin [ajo 41374742788](https://github.com/MiroKur/K-ytt-liittym-projekti/actions/runs/41374742788) valmistui onnistuneesti 2.11.2026 commitille `f4fac2f`. Build, neljä yksikkötestiä ja kaikki 28 E2E-testiä läpäisivät. Testit varmensivat pääpolun, suosikin säilymisen ja poiston, haku/kategoria-vaihdon, virhetilanteet, nopeat haut, näppäimistöhaun ja vaakavierityksen puuttumisen 390/768/1440 px leveydellä molemmilla selaimilla. Automaattinen asettelutesti ei korvaa visuaalista arviointia.
 
 ## Rajaukset ja seuraavat tehtävät
 
 GitHubin lukuoikeus toimi. Jira-connectoria ei ollut, joten taulun tehtäviä ei voitu tarkistaa tai muuttaa. Figma-linkkiä ei ollut; prototyyppiä ei luotu eikä olemassaoloa vahvistettu. Word luettiin kokonaan ilman käyttöoikeusongelmaa.
 
-Ennen kurssiversion hyväksyntää tarvitaan onnistunut E2E-ajo, visuaalinen tarkistus molemmilla selaimilla ja kolmella leveydellä, oikean API:n koko käyttäjäpolku omassa selaimessa ja ulkopuolisen käyttäjän käytettävyystesti. Julkaise testidemo ja lisää todellinen linkki. Tee Figma-prototyyppi, esittelyvideo ja itsearviointi. Moodle-palautusta ei ole tehty. Usean välilehden suosikkimuutoksia ei synkronoida; kyse on yhden selaimen paikallisesta kokoelmasta.
+Ennen kurssiversion hyväksyntää tarvitaan vielä visuaalinen tarkistus molemmilla selaimilla ja kolmella leveydellä, oikean API:n koko käyttäjäpolku omassa selaimessa ja ulkopuolisen käyttäjän käytettävyystesti. Julkaise testidemo ja lisää todellinen linkki. Tee Figma-prototyyppi, esittelyvideo ja itsearviointi. Moodle-palautusta ei ole tehty. Usean välilehden suosikkimuutoksia ei synkronoida; kyse on yhden selaimen paikallisesta kokoelmasta.
+
+## GitHub-tallennus
+
+Terminaalin pushilta puuttui kirjautuminen. Tiedostot siirrettiin GitHub-connectorilla haaraan `feature/recipebox-mvp`; paikallisen ja GitHubin tiedostopuun SHA vastasi toisiaan. [Luonnos-PR #1](https://github.com/MiroKur/K-ytt-liittym-projekti/pull/1) on avoin tarkastelua varten. Main-haaraan ei yhdistetty muutoksia.
