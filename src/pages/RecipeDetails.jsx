@@ -18,7 +18,10 @@ export default function RecipeDetails({ favorites }) {
   return (
     <section className="page-section">
       <Link className="back-link" to={back}>
-        ← Takaisin resepteihin
+        ←{" "}
+        {back === "/favorites"
+          ? "Takaisin suosikkeihin"
+          : "Takaisin resepteihin"}
       </Link>
       {result.status === "loading" ? (
         <StatusMessage title="Ladataan reseptiä…" />
