@@ -17,7 +17,8 @@ Käyttäjän antama [Figma Make -linkki](https://www.figma.com/make/DYdPyw4kCFPk
 - `npm run build`: onnistui.
 - `npm run test:unit`: 4/4 onnistui.
 - `npm test`: Chromium 14/14 onnistui; Firefoxin 14 tapausta estyivät selaimen käynnistyessä virheeseen `Could not find profile folder`. Koko komento epäonnistui siksi paikallisesti. Testit käyttävät vakioituja API-vastauksia.
-- `git diff --check`: onnistui ennen dokumentointia; tarkistetaan uudelleen ennen committia.
+- GitHub Actions [ajo 43901002492](https://github.com/MiroKur/K-ytt-liittym-projekti/actions/runs/43901002492), commit `8b28797`: build, yksikkötestit ja molempien selainten Playwright-ajot onnistuivat.
+- `git diff --check`: onnistui.
 - `npm run preview`: tuotantokoonti avautui Chromiumissa, myös suora hash-reitti `#/recipe/52771` latasi reseptin.
 - Oikea TheMealDB, Chromium ilman mock-vastauksia: englanninkielinen Arrabiata-haku; Chicken-kategoria ja tyhjennys; haun ja kategorian keskinäinen tyhjennys; resepti, ainesosat, määrät ja ohje; suosikin lisäys, päivityksessä säilyminen, avaaminen ja poisto; paluu hakutuloksiin; suora URL, päivitys sekä selaimen takaisin ja eteen. Sivun JavaScript-virheitä tai epäonnistuneita verkkopyyntöjä ei havaittu lopullisella ajokerralla (Reactin kehitystilan perutut pyynnöt rajattiin pois).
 - Ympäristön HTTPS-välityspalvelin aiheutti Chromiumissa `ERR_CERT_AUTHORITY_INVALID`; oikean API:n tarkistuksessa selainkontekstissa ohitettiin varmennevirheet. Sovelluksen asetuksia ei muutettu. Tämä on testin ympäristörajaus.
