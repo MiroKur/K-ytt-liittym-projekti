@@ -63,6 +63,11 @@ test("haku, reseptitiedot, suosikin pysyvyys ja poisto", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Test Chicken" }),
   ).toBeVisible();
+  await page.getByRole("link", { name: /Test Chicken.*Katso resepti/ }).click();
+  await page.getByRole("link", { name: "Takaisin suosikkeihin" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Suosikit", exact: true }),
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => JSON.parse(localStorage.getItem("recipebox.favorites.v1")).length,

@@ -1,51 +1,29 @@
-# Toteutusraportti 2.11.2026
+# Toteutusraportti 16.11.2026
 
-## Lähtötilanne
+## Lähtötilanne ja muutokset
 
-Repositorion main-haarassa oli vain 70 tavun README, viimeisin commit `47e4490`. Työpuu oli puhdas. Sovellusta, riippuvuuksia, testejä tai Figma-linkkiä ei ollut. Repo ei sisältänyt Word-suunnitelmaa. Käyttäjän liitteen kaikki tekstikappaleet ja taulukot luettiin python-docxilla ja alkuperäinen tiedosto kopioitiin muuttamattomana `docs/RecipeBox_projektisuunnitelma.docx`-polkuun.
+Puhdas työkopio kloonattiin haarasta `feature/recipebox-mvp`, jonka viimeisin commit oli `3e16cd8`. PR #1 oli jo yhdistetty mainiin (merge `046e139`); sen viimeisimmän haaracommitin push- ja PR-CI-ajot olivat onnistuneet. Jatkokehitys tehtiin mainista uudelle haaralle `feature/recipebox-polish`. Paikallisia muutoksia ei ollut eikä force pushia käytetty. AGENTS.md-tiedostoa ei löytynyt. README, aiempi toteutusraportti, Jira-lista ja Word-suunnitelman teksti luettiin.
 
-Ympäristö: Node 24.22.1, npm 11.9.0, Git 2.51.1. Työ tehdään haarassa `feature/recipebox-mvp`. Aiempaa sovelluskoodia ei korvattu eikä dokumentaatiota poistettu.
+Chromiumin kuvissa kortin ja kategoriasuositusten vinonuoli näkyi puuttuvana merkkinä. Merkki vaihdettiin oikealle osoittavaan nuoleen. Suosikeista avatun reseptin paluulinkki sanoi virheellisesti ”Takaisin resepteihin”, vaikka kohde oli suosikit; teksti korjattiin ja olemassa olevaa regressiopolkua täydennettiin. React-, Vite-, CSS-, TheMealDB- ja localStorage-rakenne säilyi.
 
-## Toteutettu
+## Visuaalinen tarkistus
 
-React + Vite + JavaScript + CSS, HashRouter, kolme päänäkymää sekä navigaatio, haku, kategoriavalinta, reseptikortti, suosikkipainike, kuvan varatila ja tilaviestikomponentit. API-moduuli erottaa nimihakua, kategorioita, kategoriasuodatusta ja ID-hakua koskevat pyynnöt. Ainesosat normalisoidaan 20 kenttäparista. Haku ja kategoria ovat vaihtoehtoisia, tyhjä syöte validoidaan ja vanhentunut vastaus estetään sekä AbortControllerilla että efektin aktiivisuustarkistuksella.
+Chromiumissa kuvattiin oikean API:n hakutulos, reseptitiedot ja suosikit leveyksillä 390, 768 ja 1440 px. [Kuvakaappaukset](screenshots/2026-11-16/) ovat koko sivun kuvia. Niistä arvioitiin asettelu, kuvat, typografia ja ohjeiden luettavuus: 390 px:ssa sisältö on yhdessä sarakkeessa, 768 px:ssa kortit ovat kahdessa sarakkeessa ja 1440 px:ssa kolmessa; tarkistetun reseptin ohje ja kuva näkyivät luettavina. Kuvissa käytettiin yhtä oikeaa reseptiä, joten ne eivät osoita kaikkien mahdollisten pitkien nimien sopivuutta. Vinonuolen puuttuva merkki korjattiin. Kuvat on otettu korjauksen jälkeen.
 
-Suosikit säilytetään localStoragessa kortin perustietoina ilman kaksoiskappaleita. Viallinen sisältö ja estetty tallennus käsitellään, ja tila ilmoitetaan myös ruudunlukijalle. Näkymät sisältävät latauksen, virheen, uudelleenyrityksen ja tyhjän tilan. Puuttuva kuva ja sisältö saavat varatekstin.
+Käyttäjän antama [Figma Make -linkki](https://www.figma.com/make/DYdPyw4kCFPkyzAEHriuSk/RecipeBox-Recipe-App-Prototype?t=PGpCr3oyDaXLCeTV-1) tallennettiin README:hen. Figma-yhteys ilmoitti toisella tilillä käyttöoikeusvirheen ja toisella Make-tiedoston olevan tukematon; suora verkkoyhteys estyi 403-vastaukseen. Prototyypin sisältöä tai Figma-vastaavuutta ei ole varmennettu. Käytetty annettua värilinjaa.
 
-Alustava ilme: vaalea tausta, vihreät painikkeet, kortit ja CSS:llä piirretty ruoka-aiheinen kuvitus. Ilme ei ole vahvistettu Figma-prototyyppi. Mukautukset 390/768/1440 px on toteutettu CSS:ään, mutta selainvarmennus on vielä tehtävä.
+## Tarkistukset
 
-## Tiedostot
+- `npm run build`: onnistui.
+- `npm run test:unit`: 4/4 onnistui.
+- `npm test`: Chromium 14/14 onnistui; Firefoxin 14 tapausta estyivät selaimen käynnistyessä virheeseen `Could not find profile folder`. Koko komento epäonnistui siksi paikallisesti. Testit käyttävät vakioituja API-vastauksia.
+- GitHub Actions [ajo 43901002492](https://github.com/MiroKur/K-ytt-liittym-projekti/actions/runs/43901002492), commit `8b28797`: build, yksikkötestit ja molempien selainten Playwright-ajot onnistuivat.
+- `git diff --check`: onnistui.
+- `npm run preview`: tuotantokoonti avautui Chromiumissa, myös suora hash-reitti `#/recipe/52771` latasi reseptin.
+- Oikea TheMealDB, Chromium ilman mock-vastauksia: englanninkielinen Arrabiata-haku; Chicken-kategoria ja tyhjennys; haun ja kategorian keskinäinen tyhjennys; resepti, ainesosat, määrät ja ohje; suosikin lisäys, päivityksessä säilyminen, avaaminen ja poisto; paluu hakutuloksiin; suora URL, päivitys sekä selaimen takaisin ja eteen. Sivun JavaScript-virheitä tai epäonnistuneita verkkopyyntöjä ei havaittu lopullisella ajokerralla (Reactin kehitystilan perutut pyynnöt rajattiin pois).
+- Ympäristön HTTPS-välityspalvelin aiheutti Chromiumissa `ERR_CERT_AUTHORITY_INVALID`; oikean API:n tarkistuksessa selainkontekstissa ohitettiin varmennevirheet. Sovelluksen asetuksia ei muutettu. Tämä on testin ympäristörajaus.
+- Vakioidut testit kattavat muun muassa tyhjän haun ja tuloksen, puuttuvan kuvan, tallennuksen luku- ja kirjoitusvirheet, API-virheen ja uudelleenyrityksen, viivästyneen vastauksen sekä näppäimistöhaun ja näkyvän kohdistuksen. Koko pääpolkua ei ole vielä varmennettu yksinomaan näppäimistöllä eikä ruudunlukijalla.
 
-- Päivitetty `README.md`.
-- Lisätty `package.json`, lukitustiedosto, `.gitignore`, `index.html`, Vite- ja Playwright-asetukset.
-- Lisätty `src/components`, `src/pages`, `src/hooks`, `src/services`, `src/styles` sekä `src/main.jsx`.
-- Lisätty Playwright-käyttäjäpolut ja Node-yksikkötestit `tests/`-kansioon.
-- Lisätty `.github/workflows/checks.yml`, alkuperäinen Word-suunnitelma, API-kuvaus ja Jiraan siirrettävä tehtävälista.
+## Avoinna
 
-## Tarkistukset ja todelliset tulokset
-
-| Tarkistus | Tulos |
-| --- | --- |
-| Node/npm/Git-versiot ja `git status` | Tarkistettu, alkuperäinen työpuu puhdas |
-| `npm install` | Riippuvuudet ja lukitustiedosto luotu |
-| `npm run dev -- --host 127.0.0.1` | Vite käynnistyi porttiin 5173 |
-| `npm run build` | Onnistui |
-| `npm run test:unit` | 4/4 läpäisi |
-| `npm audit --omit=dev` | 0 tunnettua tuotantoriippuvuuksien haavoittuvuutta |
-| `git diff --check` | Onnistui |
-| TheMealDB `search.php?s=Arrabiata` HTTP-kutsu | Palautti oikean Spicy Arrabiata Penne -reseptin |
-| Playwright, 14 tapausta × Chromium/Firefox | GitHub Actionsissa 28/28 läpäisi (16,4 s) |
-
-Playwrightin ensimmäinen selainlataus palautti viallisen paketin. Vanhemman selainjakelun lataus onnistui virallisesta vaihtoehtoisesta jakelusta, mutta Chromium pysähtyi ympäristön `socket(): Operation not permitted` -rajoitukseen. Uusin Playwright-testiajuri palautettiin käyttöön. Valinnaiset `RECIPEBOX_CHROMIUM_EXECUTABLE` ja `RECIPEBOX_FIREFOX_EXECUTABLE` mahdollistavat erikseen asennetun testiselaimen käytön; normaalisti niitä ei aseteta. Näitä kokeiluja ei lasketa läpäistyiksi sovellustesteiksi.
-
-GitHub Actionsin [ajo 41374742788](https://github.com/MiroKur/K-ytt-liittym-projekti/actions/runs/41374742788) valmistui onnistuneesti 2.11.2026 commitille `f4fac2f`. Build, neljä yksikkötestiä ja kaikki 28 E2E-testiä läpäisivät. Testit varmensivat pääpolun, suosikin säilymisen ja poiston, haku/kategoria-vaihdon, virhetilanteet, nopeat haut, näppäimistöhaun ja vaakavierityksen puuttumisen 390/768/1440 px leveydellä molemmilla selaimilla. Automaattinen asettelutesti ei korvaa visuaalista arviointia.
-
-## Rajaukset ja seuraavat tehtävät
-
-GitHubin lukuoikeus toimi. Jira-connectoria ei ollut, joten taulun tehtäviä ei voitu tarkistaa tai muuttaa. Figma-linkkiä ei ollut; prototyyppiä ei luotu eikä olemassaoloa vahvistettu. Word luettiin kokonaan ilman käyttöoikeusongelmaa.
-
-Ennen kurssiversion hyväksyntää tarvitaan vielä visuaalinen tarkistus molemmilla selaimilla ja kolmella leveydellä, oikean API:n koko käyttäjäpolku omassa selaimessa ja ulkopuolisen käyttäjän käytettävyystesti. Julkaise testidemo ja lisää todellinen linkki. Tee Figma-prototyyppi, esittelyvideo ja itsearviointi. Moodle-palautusta ei ole tehty. Usean välilehden suosikkimuutoksia ei synkronoida; kyse on yhden selaimen paikallisesta kokoelmasta.
-
-## GitHub-tallennus
-
-Terminaalin pushilta puuttui kirjautuminen. Tiedostot siirrettiin GitHub-connectorilla haaraan `feature/recipebox-mvp`; paikallisen ja GitHubin tiedostopuun SHA vastasi toisiaan. [Luonnos-PR #1](https://github.com/MiroKur/K-ytt-liittym-projekti/pull/1) on avoin tarkastelua varten. Main-haaraan ei yhdistetty muutoksia.
+Figma-vertailu, koko näppäimistö- ja ruudunlukijapolku, ulkopuolinen käyttäjätesti, demo, video, itsearviointi ja Moodle-palautus vaativat edelleen tarkistuksen tai tekemisen. Julkaisua tai yhdistämistä ei tehty tämän työskentelykerran aikana. Aiemman 2.11.2026 toteutusvaiheen tiedot ovat Git-historiassa.

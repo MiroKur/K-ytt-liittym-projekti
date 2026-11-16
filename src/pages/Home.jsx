@@ -126,7 +126,7 @@ export default function Home({ favorites }) {
             <div className="suggestions">
               {["Chicken", "Pasta", "Vegetarian"].map((item) => (
                 <button key={item} onClick={() => chooseCategory(item)}>
-                  {categoryLabel(item)} <span aria-hidden="true">↗</span>
+                  {categoryLabel(item)} <span aria-hidden="true">→</span>
                 </button>
               ))}
             </div>

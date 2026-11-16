@@ -21,7 +21,7 @@ Tarvitset Node.js 22.12+ (suositus Node 24 LTS) ja npm:n. Tässä työympärist�
 ```bash
 git clone https://github.com/MiroKur/K-ytt-liittym-projekti.git
 cd K-ytt-liittym-projekti
-git switch feature/recipebox-mvp
+git switch feature/recipebox-polish
 npm ci
 npm run dev
 ```
@@ -33,7 +33,7 @@ npm run build
 npm run preview
 ```
 
-Tuotantotiedostot syntyvät `dist/`-kansioon. HashRouter ja suhteellinen Vite `base` mahdollistavat staattisen alihakemistohostauksen ilman palvelimen reittiuudelleenkirjoituksia. Julkista demoa ei ole vielä julkaistu.
+Tuotantotiedostot syntyvät `dist/`-kansioon. HashRouter ja suhteellinen Vite `base` mahdollistavat staattisen alihakemistohostauksen ilman palvelimen reittiuudelleenkirjoituksia. Julkista demoa ei ole vielä julkaistu. Esimerkiksi GitHub Pages -julkaisussa rakenna `npm ci && npm run build` ja julkaise `dist/` Pagesin Actions-artifaktina; suhteellinen `base: "./"` ja hash-reitit toimivat myös repositorion alihakemistossa. Valitse Pagesin lähteeksi GitHub Actions. Tarkista TheMealDB:n käyttöehdot ennen laajempaa julkaisua. Pelkkä `npm run preview` on paikallinen tarkistus, ei tuotantopalvelin.
 
 ## Rakenne
 
@@ -76,7 +76,7 @@ Testit käynnistävät Viten itse ja käyttävät vakioituja API-vastauksia. Ne 
 - [GitHub](https://github.com/MiroKur/K-ytt-liittym-projekti)
 - [Jira RK](https://insinoori-opinnot-24-28.atlassian.net/jira/core/projects/RK/list?jql=project%20%3D%20RK%20ORDER%20BY%20cf%5B10019%5D%20ASC)
 - [Projektisuunnitelma](docs/RecipeBox_projektisuunnitelma.docx)
-- Figma: linkki puuttuu; mobiili- ja työpöytäprototyyppi on avoin kurssitehtävä. Toteutuksen visuaalinen ilme on alustava.
+- [Figma Make -prototyypin linkki](https://www.figma.com/make/DYdPyw4kCFPkyzAEHriuSk/RecipeBox-Recipe-App-Prototype?t=PGpCr3oyDaXLCeTV-1). Linkki on saatu, mutta prototyyppiä ei voitu avata tarkastuksessa; sisältöä ja vastaavuutta ei ole varmennettu.
 - Demo ja esittelyvideo: ei vielä julkaistu.
 
 Uusin toimeksianto valitsee tehtävienhallintaan Jiran; alkuperäisen Word-suunnitelman Todoist/GitHub Projects -ehdotusta ei muutettu alkuperäistiedostossa. [Jiraan siirrettävät tehtävät](docs/JIRA.md). Moodle-palautuksia ei ole tehty tämän toteutuksen yhteydessä.
@@ -85,4 +85,4 @@ Uusin toimeksianto valitsee tehtävienhallintaan Jiran; alkuperäisen Word-suunn
 
 Käyttöliittymän tausta on `#F8FAF7`, pääväri metsänvihreä `#276749`, teksti `#1F2937` ja kortit valkoisia. Ulkoasu on moderni ja minimalistinen, kulmat pyöristettyjä. Yhteiset värit on määritelty CSS-muuttujiin tiedostossa `src/styles/main.css`.
 
-Kun Figma-prototyyppi valmistuu ja sen linkki on käytettävissä, se on ensisijainen visuaalinen malli React-toteutukselle. Silloin tarkistetaan myös asettelu, typografia, välit, komponentit ja mobiilinäkymät prototyyppiä vasten. Nykyinen toteutus perustuu annettuun tyyliohjeeseen; vastaavuutta valmiiseen prototyyppiin ei ole vielä varmennettu.
+Toteutus perustuu annettuun tyyliohjeeseen. Figma-linkki on saatu, mutta prototyypin asettelua, typografiaa, komponentteja tai mobiilinäkymiä ei ole voitu verrata toteutukseen.

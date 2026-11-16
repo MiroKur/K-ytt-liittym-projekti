@@ -19,7 +19,7 @@ export default function RecipeCard({ meal, favorites }) {
           </p>
           <h3>{meal.name}</h3>
           <span className="recipe-open">
-            Katso resepti <span aria-hidden="true">↗</span>
+            Katso resepti <span aria-hidden="true">→</span>
           </span>
         </div>
       </Link>
